@@ -495,13 +495,8 @@ Layout/DefEndAlignment:
 
 Layout/DotPosition:
   Description: 'Checks the position of the dot in multi-line method calls.'
-  StyleGuide: '#consistent-multi-line-chains'
-  Enabled: true
-  VersionAdded: '0.49'
-  EnforcedStyle: leading
-  SupportedStyles:
-    - leading
-    - trailing
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#consistent-multi-line-chains'
+  Enabled: false
 
 Layout/ElseAlignment:
   Description: 'Align elses and elsifs correctly.'
@@ -522,10 +517,7 @@ Layout/EmptyLineAfterGuardClause:
   VersionChanged: '0.59'
 
 Layout/EmptyLineAfterMagicComment:
-  Description: 'Add an empty line after magic comments to separate them from code.'
-  StyleGuide: '#separate-magic-comments-from-code'
-  Enabled: true
-  VersionAdded: '0.49'
+  Enabled: false
 
 Layout/EmptyLineAfterMultilineCondition:
   Description: 'Enforces empty line after multiline condition.'
@@ -1125,18 +1117,13 @@ Layout/MultilineMethodCallBraceLayout:
     - same_line
 
 Layout/MultilineMethodCallIndentation:
-  Description: >-
-                 Checks indentation of method calls with the dot operator
-                 that span more than one line.
-  Enabled: true
-  VersionAdded: '0.49'
-  EnforcedStyle: aligned
+  EnforcedStyle: indented
   SupportedStyles:
     - aligned
     - indented
     - indented_relative_to_receiver
-  # By default the indentation width from `Layout/IndentationWidth` is used,
-  # but it can be overridden by setting this parameter.
+  # By default, the indentation width from Style/IndentationWidth is used
+  # But it can be overridden by setting this parameter
   IndentationWidth: ~
 
 Layout/MultilineMethodDefinitionBraceLayout:
@@ -1163,18 +1150,8 @@ Layout/MultilineMethodParameterLineBreaks:
   VersionAdded: '1.32'
 
 Layout/MultilineOperationIndentation:
-  Description: >-
-                 Checks indentation of binary operations that span more than
-                 one line.
-  Enabled: true
-  VersionAdded: '0.49'
-  EnforcedStyle: aligned
-  SupportedStyles:
-    - aligned
-    - indented
-  # By default the indentation width from `Layout/IndentationWidth` is used,
-  # but it can be overridden by setting this parameter.
-  IndentationWidth: ~
+  Description: Checks indentation of binary operations that span more than one line.
+  Enabled: false
 
 Layout/ParameterAlignment:
   Description: >-
@@ -1400,21 +1377,7 @@ Layout/SpaceInsideBlockBraces:
   SpaceBeforeBlockParameters: true
 
 Layout/SpaceInsideHashLiteralBraces:
-  Description: "Use spaces inside hash literal braces - or don't."
-  StyleGuide: '#spaces-braces'
-  Enabled: true
-  VersionAdded: '0.49'
-  EnforcedStyle: space
-  SupportedStyles:
-    - space
-    - no_space
-    # 'compact' normally requires a space inside hash braces, with the exception
-    # that successive left braces or right braces are collapsed together
-    - compact
-  EnforcedStyleForEmptyBraces: no_space
-  SupportedStylesForEmptyBraces:
-    - space
-    - no_space
+  EnforcedStyle: no_space
 
 
 Layout/SpaceInsideParens:
@@ -2436,37 +2399,13 @@ Lint/Void:
 #################### Metrics ###############################
 
 Metrics/AbcSize:
-  Description: >-
-                 A calculated magnitude based on number of assignments,
-                 branches, and conditions.
-  Reference:
-    - http://c2.com/cgi/wiki?AbcMetric
-    - https://en.wikipedia.org/wiki/ABC_Software_Metric
+  Description: A calculated magnitude based on number of assignments, branches, and
+    conditions.
   Enabled: true
-  VersionAdded: '0.27'
-  VersionChanged: '1.5'
-  # The ABC size is a calculated magnitude, so this number can be an Integer or
-  # a Float.
-  AllowedMethods: []
-  AllowedPatterns: []
-  CountRepeatedAttributes: true
-  Max: 17
+  Max: 35
 
 Metrics/BlockLength:
-  Description: 'Avoid long blocks with many lines.'
-  Enabled: true
-  VersionAdded: '0.44'
-  VersionChanged: '1.5'
-  CountComments: false  # count full line comments?
-  Max: 25
-  CountAsOne: []
-  AllowedMethods:
-    # By default, exclude the `#refine` method, as it tends to have larger
-    # associated blocks.
-    - refine
-  AllowedPatterns: []
-  Exclude:
-    - '**/*.gemspec'
+  Enabled: false
 
 Metrics/BlockNesting:
   Description: 'Avoid excessive block nesting.'
@@ -2500,15 +2439,9 @@ Metrics/CyclomaticComplexity:
 
 Metrics/MethodLength:
   Description: 'Avoid methods longer than 10 lines of code.'
-  StyleGuide: '#short-methods'
-  Enabled: true
-  VersionAdded: '0.25'
-  VersionChanged: '1.5'
-  CountComments: false  # count full line comments?
-  Max: 10
-  CountAsOne: []
-  AllowedMethods: []
-  AllowedPatterns: []
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#short-methods'
+  Enabled: false
+  Max: 30
 
 Metrics/ModuleLength:
   Description: 'Avoid modules longer than 100 lines of code.'
@@ -2809,8 +2742,8 @@ Naming/PredicateName:
   # Predicate name prefixes that should be removed.
   ForbiddenPrefixes:
     - is_
-    - has_
-    - have_
+    # - has_
+    # - have_
   # Predicate names which, despite having a forbidden prefix, or no `?`,
   # should still be accepted
   AllowedMethods:
@@ -2847,7 +2780,7 @@ Naming/VariableName:
 Naming/VariableNumber:
   Description: 'Use the configured style when numbering symbols, methods and variables.'
   StyleGuide: '#snake-case-symbols-methods-vars-with-numbers'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.50'
   VersionChanged: '1.4'
   EnforcedStyle: normalcase
@@ -3462,7 +3395,7 @@ Style/DocumentDynamicEvalDefinition:
 
 Style/Documentation:
   Description: 'Document classes and non-namespace modules.'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.9'
   AllowedConstants: []
   Exclude:
@@ -3710,26 +3643,7 @@ Style/FormatStringToken:
   AllowedPatterns: []
 
 Style/FrozenStringLiteralComment:
-  Description: >-
-                 Add the frozen_string_literal comment to the top of files
-                 to help transition to frozen string literals by default.
   Enabled: true
-  VersionAdded: '0.36'
-  VersionChanged: '0.79'
-  EnforcedStyle: always
-  SupportedStyles:
-    # `always` will always add the frozen string literal comment to a file
-    # regardless of the Ruby version or if `freeze` or `<<` are called on a
-    # string literal. It is possible that this will create errors.
-    - always
-    # `always_true` will add the frozen string literal comment to a file,
-    # similarly to the `always` style, but will also change any disabled
-    # comments (e.g. `# frozen_string_literal: false`) to be enabled.
-    - always_true
-    # `never` will enforce that the frozen string literal comment does not
-    # exist in a file.
-    - never
-  SafeAutoCorrect: false
 
 Style/GlobalStdStream:
   Description: 'Enforces the use of `$stdout/$stderr/$stdin` instead of `STDOUT/STDERR/STDIN`.'
@@ -3980,15 +3894,8 @@ Style/KeywordParametersOrder:
 
 Style/Lambda:
   Description: 'Use the new lambda literal syntax for single-line blocks.'
-  StyleGuide: '#lambda-multi-line'
-  Enabled: true
-  VersionAdded: '0.9'
-  VersionChanged: '0.40'
-  EnforcedStyle: line_count_dependent
-  SupportedStyles:
-    - line_count_dependent
-    - lambda
-    - literal
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#lambda-multi-line'
+  Enabled: false
 
 Style/LambdaCall:
   Description: 'Use lambda.call(...) instead of lambda.(...).'
@@ -4917,7 +4824,7 @@ Style/SingleLineMethods:
 
 Style/SlicingWithRange:
   Description: 'Checks array slicing is done with endless ranges when suitable.'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.83'
   Safe: false
 
@@ -4977,7 +4884,7 @@ Style/StringChars:
 Style/StringConcatenation:
   Description: 'Checks for places where string concatenation can be replaced with string interpolation.'
   StyleGuide: '#string-interpolation'
-  Enabled: true
+  Enabled: false
   Safe: false
   VersionAdded: '0.89'
   VersionChanged: '1.18'
@@ -4992,18 +4899,8 @@ Style/StringHashKeys:
   Safe: false
 
 Style/StringLiterals:
-  Description: 'Checks if uses of quotes match the configured preference.'
-  StyleGuide: '#consistent-string-literals'
-  Enabled: true
-  VersionAdded: '0.9'
-  VersionChanged: '0.36'
   EnforcedStyle: single_quotes
-  SupportedStyles:
-    - single_quotes
-    - double_quotes
-  # If `true`, strings which span multiple lines using `\` for continuation must
-  # use the same type of quotes on each line.
-  ConsistentQuotesInMultiline: false
+  Enabled: false
 
 Style/StringLiteralsInInterpolation:
   Description: >-
@@ -5053,7 +4950,7 @@ Style/SwapValues:
 Style/SymbolArray:
   Description: 'Use %i or %I for arrays of symbols.'
   StyleGuide: '#percent-i'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.9'
   VersionChanged: '0.49'
   EnforcedStyle: percent
@@ -5135,11 +5032,10 @@ Style/TrailingCommaInArrayLiteral:
   StyleGuide: '#no-trailing-array-commas'
   Enabled: true
   VersionAdded: '0.53'
-  # If `comma`, the cop requires a comma after the last item in an array,
   # but only when each item is on its own line.
   # If `consistent_comma`, the cop requires a comma after the last item of all
-  # non-empty, multiline array literals.
-  EnforcedStyleForMultiline: no_comma
+  # non-empty array literals.
+  EnforcedStyleForMultiline: consistent_comma
   SupportedStylesForMultiline:
     - comma
     - consistent_comma
@@ -5157,8 +5053,8 @@ Style/TrailingCommaInHashLiteral:
   # If `comma`, the cop requires a comma after the last item in a hash,
   # but only when each item is on its own line.
   # If `consistent_comma`, the cop requires a comma after the last item of all
-  # non-empty, multiline hash literals.
-  EnforcedStyleForMultiline: no_comma
+  # non-empty hash literals.
+  EnforcedStyleForMultiline: consistent_comma
   SupportedStylesForMultiline:
     - comma
     - consistent_comma
